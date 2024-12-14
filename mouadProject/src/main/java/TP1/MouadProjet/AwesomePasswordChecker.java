@@ -35,7 +35,7 @@ public class AwesomePasswordChecker {
       return instance;
   }
       
-  private AwesomePasswordChecker(InputStream is) throws IOException {
+  AwesomePasswordChecker(InputStream is) throws IOException {
     BufferedReader br = new BufferedReader(new InputStreamReader(is));
   String line;
     while((line = br.readLine()) != null){
@@ -50,6 +50,7 @@ public class AwesomePasswordChecker {
     br.close();
   }
 
+  //Convert the password to a mask
   public int[] maskAff(String password) {
     int[] maskArray = new int[28]; 
     int limit = Math.min(password.length(), 28);
@@ -107,7 +108,7 @@ public class AwesomePasswordChecker {
     }
     return maskArray;
   }
-
+  //mesurer la distance minimale entre le masque généré pour un mot de passe donné et les centres de clusters stockés
   public double getDIstance(String password) {
     int[] maskArray = maskAff(password);
     double minDistance = Double.MAX_VALUE;
@@ -124,7 +125,7 @@ public class AwesomePasswordChecker {
     }
     return Math.sqrt(sum);
   }
-
+  //hachage cryptographique
   public static String ComputeMD5(String input) {
     byte[] message = input.getBytes();
     int messageLenBytes = message.length;
