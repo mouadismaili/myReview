@@ -25,7 +25,7 @@ Installation
 
     Clonez le dépôt ou copiez les fichiers source dans votre projet :
 
-git clone <URL_DU_RÉPÔ>
+git clone https://gitlab.isima.fr/moismailim/codereview.git
 
 Ajoutez le fichier cluster_centers_HAC_aff.csv dans le dossier resources de votre projet.
 
