@@ -14,12 +14,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+/**
+ * Classe responsable de vérifier les mots de passe à l'aide de clusters prédéfinis.
+ */
 public class AwesomePasswordChecker {
 
   private static AwesomePasswordChecker instance;
-
+   /**
+    * Liste des centres des clusters.
+    */
   private final List<double[]> clusterCenters = new ArrayList<>();
-
+  /**
+     * Méthode permettant d'obtenir une instance de AwesomePasswordChecker à partir d'un fichier.
+     *
+     * @param file Le fichier contenant les centres des clusters.
+     * @return Une instance de {@code AwesomePasswordChecker}.
+     * @throws IOException Si une erreur d'entrée/sortie se produit.
+     */
   public static AwesomePasswordChecker getInstance(File file) throws IOException {
     if (instance == null) {
           instance = new AwesomePasswordChecker(new FileInputStream(file));
@@ -51,7 +62,11 @@ public class AwesomePasswordChecker {
     br.close();
   }
 
-  //Convert the password to a mask
+  /**
+   * Méthode permettant de créer un masque pour un mot de passe.
+   * @param password Le mot de passe à analyser.
+   * @return Un tableau d'entiers représentant le masque.
+   */
   public int[] maskAff(String password) {
     int[] maskArray = new int[28]; 
     int limit = Math.min(password.length(), 28);
@@ -109,7 +124,12 @@ public class AwesomePasswordChecker {
     }
     return maskArray;
   }
-  //mesurer la distance minimale entre le masque généré pour un mot de passe donné et les centres de clusters stockés
+  /**
+     * mesurer la distance minimale entre le masque généré pour un mot de passe donné et les centres de clusters stockés
+     *
+     * @param password Le mot de passe à analyser.
+     * @return La distance minimale sous forme d'un {@code double}.
+     */
   public double getDIstance(String password) {
     int[] maskArray = maskAff(password);
     double minDistance = Double.MAX_VALUE;
@@ -126,7 +146,9 @@ public class AwesomePasswordChecker {
     }
     return Math.sqrt(sum);
   }
-  //hachage cryptographique
+  /**
+   * Méthode permettant de calculer le MD5 d'une chaîne de caractères. 
+   */
   public static String ComputeMD5(String input) {
     byte[] message = input.getBytes();
     int messageLenBytes = message.length;
