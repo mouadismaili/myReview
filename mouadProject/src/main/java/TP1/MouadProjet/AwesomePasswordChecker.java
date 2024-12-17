@@ -296,4 +296,8 @@ public class AwesomePasswordChecker {
 
     return md5Hex.toString();
   }
+public List<double[]> getClusterCenters() {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'getClusterCenters'");
+}
 }
