@@ -15,21 +15,48 @@ import java.util.List;
 
 
 /**
- * Classe responsable de vérifier les mots de passe à l'aide de clusters prédéfinis.
+ * Classe permettant de vérifier la force des mots de passe à l'aide de clusters prédéfinis.
+ * <p>
+ * Cette classe utilise des centres de clusters pour évaluer la distance minimale
+ * entre un masque généré pour un mot de passe et les centres de clusters chargés depuis un fichier.
+ * Elle inclut également une méthode pour calculer le hachage MD5 d'une chaîne de caractères.
+ * </p>
  */
 public class AwesomePasswordChecker {
+  /**
+     * Taille maximale du tableau de masques pour les mots de passe.
+     */
+    @SuppressWarnings("unused")
+    private static final int MASK_ARRAY_SIZE = 28;
 
-  private static AwesomePasswordChecker instance;
-   /**
-    * Liste des centres des clusters.
-    */
+    /**
+     * Valeur associée aux caractères spéciaux.
+     */
+    @SuppressWarnings("unused")
+    private static final int SPECIAL_CHAR_VALUE = 7;
+
+    /**
+     * Octet utilisé pour le remplissage dans l'algorithme MD5.
+     */
+    @SuppressWarnings("unused")
+    private static final byte PADDING_BYTE = (byte) 0x80;
+
+    /**
+     * Instance unique de la classe selon le pattern Singleton.
+     */
+    private static AwesomePasswordChecker instance;
+
+    /**
+     * Liste des centres des clusters.
+     * Chaque centre est représenté comme un tableau de doubles, où chaque élément du tableau
+     * correspond à une coordonnée dans l'espace des données.
+     */
   private final List<double[]> clusterCenters = new ArrayList<>();
   /**
-     * Méthode permettant d'obtenir une instance de AwesomePasswordChecker à partir d'un fichier.
+     * Constructeur privé pour charger les centres des clusters à partir d'un flux d'entrée.
      *
-     * @param file Le fichier contenant les centres des clusters.
-     * @return Une instance de {@code AwesomePasswordChecker}.
-     * @throws IOException Si une erreur d'entrée/sortie se produit.
+     * @param file Le flux d'entrée contenant les données des clusters, au format CSV.
+     * @throws IOException Si une erreur d'entrée/sortie se produit lors de la lecture des données.
      */
   public static AwesomePasswordChecker getInstance(File file) throws IOException {
     if (instance == null) {
@@ -37,6 +64,13 @@ public class AwesomePasswordChecker {
     }
     return instance;
   }
+  /**
+     * Obtient une instance unique de {@code AwesomePasswordChecker} en chargeant les centres
+     * des clusters depuis un fichier.
+     *
+     * @return L'instance unique de {@code AwesomePasswordChecker}.
+     * @throws IOException Si une erreur d'entrée/sortie se produit lors de la lecture du fichier.
+     */
   
   public static AwesomePasswordChecker getInstance() throws IOException {
     if (instance == null) {
@@ -45,7 +79,13 @@ public class AwesomePasswordChecker {
     }
       return instance;
   }
-      
+  /**
+     * Obtient l'instance unique de {@code AwesomePasswordChecker} en chargeant les centres
+     * des clusters depuis un fichier de ressources par défaut.
+     *
+     * @return L'instance unique de {@code AwesomePasswordChecker}.
+     * @throws IOException Si une erreur d'entrée/sortie se produit lors de la lecture du fichier.
+     */  
   AwesomePasswordChecker(InputStream is) throws IOException {
     BufferedReader br = new BufferedReader(new InputStreamReader(is));
   String line;
@@ -62,11 +102,15 @@ public class AwesomePasswordChecker {
     br.close();
   }
 
-  /**
-   * Méthode permettant de créer un masque pour un mot de passe.
-   * @param password Le mot de passe à analyser.
-   * @return Un tableau d'entiers représentant le masque.
-   */
+ /**
+     * Génère un masque caractéristique pour le mot de passe fourni.
+     *
+     * <p>Chaque caractère du mot de passe est analysé pour produire une valeur numérique
+     * basée sur sa catégorie : lettre, chiffre, caractère spécial, etc.</p>
+     *
+     * @param password Le mot de passe à analyser.
+     * @return Un tableau d'entiers représentant le masque généré pour le mot de passe.
+     */
   public int[] maskAff(String password) {
     int[] maskArray = new int[28]; 
     int limit = Math.min(password.length(), 28);
@@ -125,10 +169,11 @@ public class AwesomePasswordChecker {
     return maskArray;
   }
   /**
-     * mesurer la distance minimale entre le masque généré pour un mot de passe donné et les centres de clusters stockés
+     * Mesure la distance minimale entre le masque généré pour un mot de passe
+     * et les centres de clusters stockés.
      *
      * @param password Le mot de passe à analyser.
-     * @return La distance minimale sous forme d'un {@code double}.
+     * @return La distance minimale calculée, sous forme d'un {@code double}.
      */
   public double getDIstance(String password) {
     int[] maskArray = maskAff(password);
@@ -138,7 +183,13 @@ public class AwesomePasswordChecker {
     }
     return minDistance;
   }
-
+  /**
+     * Calcule la distance euclidienne entre deux points dans un espace n-dimensionnel.
+     *
+     * @param a Le premier tableau d'entiers.
+     * @param b Le second tableau de réels.
+     * @return La distance euclidienne entre les deux points.
+     */
   private double euclideanDistance(int[] a, double[] b) {
     double sum = 0;
     for (int i = 0; i < a.length; i++) {
@@ -147,8 +198,11 @@ public class AwesomePasswordChecker {
     return Math.sqrt(sum);
   }
   /**
-   * Méthode permettant de calculer le MD5 d'une chaîne de caractères. 
-   */
+     * Calcule le hachage MD5 d'une chaîne de caractères.
+     *
+     * @param input La chaîne de caractères à hacher.
+     * @return La représentation hexadécimale du hachage MD5.
+     */
   public static String ComputeMD5(String input) {
     byte[] message = input.getBytes();
     int messageLenBytes = message.length;
@@ -231,7 +285,6 @@ public class AwesomePasswordChecker {
       h[3] += d;
     }
 
-    // Step 5: Output
     ByteBuffer md5Buffer = ByteBuffer.allocate(16).order(ByteOrder.LITTLE_ENDIAN);
     md5Buffer.putInt(h[0]).putInt(h[1]).putInt(h[2]).putInt(h[3]);
     byte[] md5Bytes = md5Buffer.array();

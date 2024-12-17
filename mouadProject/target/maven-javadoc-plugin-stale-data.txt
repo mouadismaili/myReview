@@ -1,0 +1,50 @@
+-J-Duser.language=
+-J-Duser.country=
+@options
+@packages
+-encoding
+'UTF-8'
+-protected
+-source
+'1.8'
+-sourcepath
+'/home/mouad/Bureau/codeReview/mouadProject/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2024. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'/home/mouad/Bureau/codeReview/mouadProject/target/reports/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'mouadProject 1.0-SNAPSHOT API'
+-linkoffline
+'https://docs.oracle.com/javase/8/docs/api' '/home/mouad/Bureau/codeReview/mouadProject/target/javadoc-bundle-options'
+-use
+-version
+-windowtitle
+'mouadProject 1.0-SNAPSHOT API'
+TP1.MouadProjet
+/home/mouad/Bureau/codeReview/mouadProject/src/main/java = 1734181977934
+/home/mouad/Bureau/codeReview/mouadProject/target/reports/apidocs/search.html = 1734474869821
+/home/mouad/Bureau/codeReview/mouadProject/target/reports/apidocs/index-all.html = 1734474869810
+/home/mouad/Bureau/codeReview/mouadProject/target/reports/apidocs/search.js = 1734474869909
+/home/mouad/Bureau/codeReview/mouadProject/target/reports/apidocs/search-page.js = 1734474869914
+/home/mouad/Bureau/codeReview/mouadProject/target/reports/apidocs/help-doc.html = 1734474869866
+/home/mouad/Bureau/codeReview/mouadProject/target/reports/apidocs/overview-tree.html = 1734474869686
+/home/mouad/Bureau/codeReview/mouadProject/target/reports/apidocs/package-search-index.js = 1734474869759
+/home/mouad/Bureau/codeReview/mouadProject/target/reports/apidocs/member-search-index.js = 1734474869762
+/home/mouad/Bureau/codeReview/mouadProject/target/reports/apidocs/tag-search-index.js = 1734474869763
+/home/mouad/Bureau/codeReview/mouadProject/target/reports/apidocs/javadoc.sh = 1734474703697
+/home/mouad/Bureau/codeReview/mouadProject/target/reports/apidocs/module-search-index.js = 1734474869757
+/home/mouad/Bureau/codeReview/mouadProject/target/reports/apidocs/allclasses-index.html = 1734474869745
+/home/mouad/Bureau/codeReview/mouadProject/target/reports/apidocs/element-list = 1734474869523
+/home/mouad/Bureau/codeReview/mouadProject/target/reports/apidocs/stylesheet.css = 1734474869886
+/home/mouad/Bureau/codeReview/mouadProject/target/reports/apidocs/script.js = 1734474869890
+/home/mouad/Bureau/codeReview/mouadProject/target/reports/apidocs/link.svg = 1734474869897
+/home/mouad/Bureau/codeReview/mouadProject/target/reports/apidocs/index.html = 1734474869828
+/home/mouad/Bureau/codeReview/mouadProject/target/reports/apidocs/copy.svg = 1734474869893
+/home/mouad/Bureau/codeReview/mouadProject/target/reports/apidocs/type-search-index.js = 1734474869760
+/home/mouad/Bureau/codeReview/mouadProject/target/reports/apidocs/allpackages-index.html = 1734474869755
