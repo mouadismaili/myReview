@@ -42,37 +42,46 @@ Compilez le projet avec votre IDE préféré ou en ligne de commande :
 
 Vous pouvez initialiser une instance de `AwesomePasswordChecker` de deux manières :
 1. Avec un Fichier Personnalisé
-    ```bash    
+
+    ```java
     File file = new File("path/to/your/cluster_centers_HAC_aff.csv");
     AwesomePasswordChecker checker = AwesomePasswordChecker.getInstance(file);
+    ```
 
 2. Avec le Fichier de Ressources par Défaut
 
-    ```bash    
+    ```java
     AwesomePasswordChecker checker = AwesomePasswordChecker.getInstance();
+    ```
 
 - ***Calcul de la Distance***
 
 Calculez la distance minimale entre un mot de passe et les centres de clusters :
-    ```bash    
+
+    ```java
     String password = "examplePassword123!";
     double distance = checker.getDIstance(password);
     System.out.println("Distance : " + distance);
+    ```
 
 - ***Génération d'un Masque***
 
 Transformez un mot de passe en un tableau numérique basé sur ses caractères :
-    ```bash    
+
+    ```java
     int[] mask = checker.maskAff("examplePassword123!");
     System.out.println(Arrays.toString(mask));
+    ```
 
 - ***Hachage MD5***
 
 Générez un hachage MD5 pour un texte donné :
 
-    ```bash    
+    ```java
     String hash = AwesomePasswordChecker.ComputeMD5("examplePassword123!");
     System.out.println("MD5 Hash : " + hash);
+    ```
+
 
 -***Règles de Masque (maskAff)***
 
