@@ -51,7 +51,7 @@ public class AwesomePasswordChecker {
      * Chaque centre est représenté comme un tableau de doubles, où chaque élément du tableau
      * correspond à une coordonnée dans l'espace des données.
      */
-  private final List<double[]> clusterCenters = new ArrayList<>();
+  final List<double[]> clusterCenters = new ArrayList<>();
   /**
      * Constructeur privé pour charger les centres des clusters à partir d'un flux d'entrée.
      *
@@ -64,6 +64,7 @@ public class AwesomePasswordChecker {
     }
     return instance;
   }
+  public AwesomePasswordChecker() {}
   /**
      * Obtient une instance unique de {@code AwesomePasswordChecker} en chargeant les centres
      * des clusters depuis un fichier.
@@ -190,7 +191,7 @@ public class AwesomePasswordChecker {
      * @param b Le second tableau de réels.
      * @return La distance euclidienne entre les deux points.
      */
-  private double euclideanDistance(int[] a, double[] b) {
+  double euclideanDistance(int[] a, double[] b) {
     double sum = 0;
     for (int i = 0; i < a.length; i++) {
       sum += (a[i] - b[i]) * (a[i] + b[i]);
