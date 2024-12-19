@@ -93,7 +93,7 @@ Les caractères du mot de passe sont mappés selon les règles suivantes :
 | **Caractère**                                      | **Valeur** |
 |----------------------------------------------------|------------|
 | Lettres spécifiques (e, s, a, i, t, n, r, u, o, l) (minuscule) | 1          |
-| Lettres spécifiques (majuscule)                   | 3          |
+| Lettres spécifiques (E,S,A,I,T,N,R,U,O,L)                   | 3          |
 | Caractères spéciaux (>, <, -, ?, ., /, !, %, @, &) | 6          |
 | Lettres minuscules (autres)                       | 2          |
 | Lettres majuscules (autres)                       | 4          |
