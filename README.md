@@ -37,7 +37,9 @@ Compilez le projet avec votre IDE préféré ou en ligne de commande :
     ```bash
     javac TP1/MouadProjet/AwesomePasswordChecker.java
     ```
+
 ##Utilisation
+
 - ***Chargement de l'Instance***
 
 Vous pouvez initialiser une instance de `AwesomePasswordChecker` de deux manières :
