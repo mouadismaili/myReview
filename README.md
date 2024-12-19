@@ -37,7 +37,7 @@ Compilez le projet avec votre IDE préféré ou en ligne de commande :
     ```bash
     javac TP1/MouadProjet/AwesomePasswordChecker.java
     ```
-###Utilisation
+##Utilisation
 - ***Chargement de l'Instance***
 
 Vous pouvez initialiser une instance de `AwesomePasswordChecker` de deux manières :
@@ -58,7 +58,7 @@ Vous pouvez initialiser une instance de `AwesomePasswordChecker` de deux manièr
 
 Calculez la distance minimale entre un mot de passe et les centres de clusters :
 
-    ```java
+    ```
     String password = "examplePassword123!";
     double distance = checker.getDIstance(password);
     System.out.println("Distance : " + distance);
