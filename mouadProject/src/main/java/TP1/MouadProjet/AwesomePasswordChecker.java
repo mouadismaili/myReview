@@ -15,31 +15,64 @@ import java.util.List;
 
 
 /**
- * Classe permettant de vérifier la force des mots de passe à l'aide de clusters prédéfinis.
+ * Classe permetde vérifier la force des mots de passe .
  * <p>
- * Cette classe utilise des centres de clusters pour évaluer la distance minimale
- * entre un masque généré pour un mot de passe et les centres de clusters chargés depuis un fichier.
- * Elle inclut également une méthode pour calculer le hachage MD5 d'une chaîne de caractères.
+ * Cette classe utilise des centres de clusters pour évaluer
+ * la force d'un mot de passe en mesurant la distance minimale
+ * entre un masque généré pour un mot de passe et les centres de
+ * clusters chargés depuis un fichier.
+ * Elle inclut également une méthode pour
+ *  calculer le hachage MD5 d'une chaîne de caractères.
  * </p>
  */
 public class AwesomePasswordChecker {
   /**
      * Taille maximale du tableau de masques pour les mots de passe.
      */
-    @SuppressWarnings("unused")
+    
     private static final int MASK_ARRAY_SIZE = 28;
 
     /**
-     * Valeur associée aux caractères spéciaux.
+     * Valeur associée aux caractères spéciaux MAJUSCULES.
      */
-    @SuppressWarnings("unused")
-    private static final int SPECIAL_CHAR_VALUE = 7;
+    
+    private static final int SPECIAL_CHAR_VALUE_MAJ = 3;
 
+    /**
+     * Valeur associée aux chiffres.
+     */
+    
+    private static final int DIGIT_VALUE = 5;
+
+    /**
+     * Valeur associée aux caractères spéciaux MINISCULES.
+     */
+    private static final int SPECIAL_CHAR_VALUE_MIN=1;
+
+    /**
+     * Valeur associée aux autres caractères.
+     */
+    private static final int OTHER_CHAR_VALUE = 7;
+
+    /**
+     * Valeur associée aux caractères specials.
+     */
+    private static final int SPECIAL_CHAR_VALUE = 6;
+     
+    /*
+     * valeur associée au caractère maj.
+     */
+    private static final int MAJ_CHAR_VALUE = 4; 
+
+    /*
+     * valeur associée au caractère min.
+     */
+    private static final int MIN_CHAR_VALUE = 2;
+    
     /**
      * Octet utilisé pour le remplissage dans l'algorithme MD5.
      */
-    @SuppressWarnings("unused")
-    private static final byte PADDING_BYTE = (byte) 0x80;
+    
 
     /**
      * Instance unique de la classe selon le pattern Singleton.
@@ -48,29 +81,33 @@ public class AwesomePasswordChecker {
 
     /**
      * Liste des centres des clusters.
-     * Chaque centre est représenté comme un tableau de doubles, où chaque élément du tableau
+     * Chaque centre est représenté comme un tableau de doubles,
+     * où chaque élément du tableau
      * correspond à une coordonnée dans l'espace des données.
      */
   final List<double[]> clusterCenters = new ArrayList<>();
   /**
-     * Constructeur privé pour charger les centres des clusters à partir d'un flux d'entrée.
+     * Constructeur privé pour charger les centres des clusters à
+     * partir d'un flux d'entrée.
      *
-     * @param file Le flux d'entrée contenant les données des clusters, au format CSV.
-     * @throws IOException Si une erreur d'entrée/sortie se produit lors de la lecture des données.
+     * @param file Le flux d'entrée pour charger les centres des clusters.
+     * @throws IOException Si une erreur d'entrée/sortie se produit.
+     * @return L'instance unique de {@code AwesomePasswordChecker}.
      */
-  public static AwesomePasswordChecker getInstance(File file) throws IOException {
+  public static AwesomePasswordChecker getInstance(File fi) throws IOException {
     if (instance == null) {
-          instance = new AwesomePasswordChecker(new FileInputStream(file));
+          instance = new AwesomePasswordChecker(new FileInputStream(fi));
     }
     return instance;
   }
+
   public AwesomePasswordChecker() {}
   /**
-     * Obtient une instance unique de {@code AwesomePasswordChecker} en chargeant les centres
-     * des clusters depuis un fichier.
+     * Obtient une instance unique de {@code AwesomePasswordChecker} en
+     * chargeant les centres des clusters depuis un fichier.
      *
      * @return L'instance unique de {@code AwesomePasswordChecker}.
-     * @throws IOException Si une erreur d'entrée/sortie se produit lors de la lecture du fichier.
+     * @throws IOException Si une erreur d'entrée/sortie se produit.
      */
   
   public static AwesomePasswordChecker getInstance() throws IOException {
@@ -81,11 +118,12 @@ public class AwesomePasswordChecker {
       return instance;
   }
   /**
-     * Obtient l'instance unique de {@code AwesomePasswordChecker} en chargeant les centres
+     * Obtient l'instance unique de {@code AwesomePasswordChecker} en 
+     * chargeant les centres
      * des clusters depuis un fichier de ressources par défaut.
      *
      * @return L'instance unique de {@code AwesomePasswordChecker}.
-     * @throws IOException Si une erreur d'entrée/sortie se produit lors de la lecture du fichier.
+     * @throws IOException Si une erreur d'entrée/sortie se produit.
      */  
   AwesomePasswordChecker(InputStream is) throws IOException {
     BufferedReader br = new BufferedReader(new InputStreamReader(is));
@@ -113,8 +151,8 @@ public class AwesomePasswordChecker {
      * @return Un tableau d'entiers représentant le masque généré pour le mot de passe.
      */
   public int[] maskAff(String password) {
-    int[] maskArray = new int[28]; 
-    int limit = Math.min(password.length(), 28);
+    int[] maskArray = new int[MASK_ARRAY_SIZE]; 
+    int limit = Math.min(password.length(), MASK_ARRAY_SIZE);
     
     for (int i = 0; i < limit; ++i) {
           char c = password.charAt(i);
@@ -129,7 +167,7 @@ public class AwesomePasswordChecker {
         case 'u':
         case 'o':
         case 'l':
-            maskArray[i] = 1;
+            maskArray[i] = SPECIAL_CHAR_VALUE_MIN;
           break;
         case 'E':
         case 'S':
@@ -141,7 +179,7 @@ public class AwesomePasswordChecker {
         case 'U':
         case 'O':
         case 'L':
-          maskArray[i] = 3;
+          maskArray[i] = SPECIAL_CHAR_VALUE_MAJ;
           break;
         case '>':
         case '<':
@@ -153,17 +191,17 @@ public class AwesomePasswordChecker {
         case '%':
         case '@':
         case '&':
-          maskArray[i] = 6;
+          maskArray[i] = SPECIAL_CHAR_VALUE;
           break;
         default:
           if (Character.isLowerCase(c)) {
-            maskArray[i] = 2;
+            maskArray[i] = MIN_CHAR_VALUE;
           } else if (Character.isUpperCase(c)) {
-            maskArray[i] = 4;
+            maskArray[i] = MAJ_CHAR_VALUE;
           } else if (Character.isDigit(c)) {
-            maskArray[i] = 5;
+            maskArray[i] = DIGIT_VALUE;
           } else {
-            maskArray[i] = 7;
+            maskArray[i] = OTHER_CHAR_VALUE;
           }
       }
     }
@@ -205,6 +243,7 @@ public class AwesomePasswordChecker {
      * @return La représentation hexadécimale du hachage MD5.
      */
   public static String ComputeMD5(String input) {
+    // CHECKSTYLE:OFF: MagicNumber
     byte[] message = input.getBytes();
     int messageLenBytes = message.length;
 
@@ -296,6 +335,7 @@ public class AwesomePasswordChecker {
     }
 
     return md5Hex.toString();
+    // CHECKSTYLE:ON
   }
 public List<double[]> getClusterCenters() {
     // TODO Auto-generated method stub
