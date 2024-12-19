@@ -59,9 +59,9 @@ Vous pouvez initialiser une instance de `AwesomePasswordChecker` de deux manièr
 Calculez la distance minimale entre un mot de passe et les centres de clusters :
 
     ```java
-    String password = "examplePassword123!";
-    double distance = checker.getDIstance(password);
-    System.out.println("Distance : " + distance);
+        String password = "examplePassword123!";
+        double distance = checker.getDIstance(password);
+        System.out.println("Distance : " + distance);
     ```
 
 - ***Génération d'un Masque***
