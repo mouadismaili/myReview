@@ -38,7 +38,7 @@ Compilez le projet avec votre IDE préféré ou en ligne de commande :
     javac TP1/MouadProjet/AwesomePasswordChecker.java
     ```
 
-##Utilisation
+## Utilisation
 
 - ***Chargement de l'Instance***
 
