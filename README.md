@@ -56,17 +56,17 @@ Vous pouvez initialiser une instance de `AwesomePasswordChecker` de deux manièr
 
 - ***Calcul de la Distance***
 
-Calculez la distance minimale entre un mot de passe et les centres de clusters :
+1. Calculez la distance minimale entre un mot de passe et les centres de clusters :
 
     ```java
-        String password = "examplePassword123!";
-        double distance = checker.getDIstance(password);
-        System.out.println("Distance : " + distance);
+    String password = "examplePassword123!";
+    double distance = checker.getDIstance(password);
+    System.out.println("Distance : " + distance);
     ```
 
 - ***Génération d'un Masque***
 
-Transformez un mot de passe en un tableau numérique basé sur ses caractères :
+1. Transformez un mot de passe en un tableau numérique basé sur ses caractères :
 
     ```java
     int[] mask = checker.maskAff("examplePassword123!");
@@ -75,7 +75,7 @@ Transformez un mot de passe en un tableau numérique basé sur ses caractères :
 
 - ***Hachage MD5***
 
-Générez un hachage MD5 pour un texte donné :
+1. Générez un hachage MD5 pour un texte donné :
 
     ```java
     String hash = AwesomePasswordChecker.ComputeMD5("examplePassword123!");
