@@ -28,7 +28,7 @@
 
    ```bash
    git clone https://gitlab.isima.fr/moismailim/codereview.git
-
+   ```
    
 
 2. Ajoutez le fichier `cluster_centers_HAC_aff.csv` dans le dossier resources de votre projet.
@@ -36,7 +36,7 @@
 Compilez le projet avec votre IDE préféré ou en ligne de commande :
     ```bash
     javac TP1/MouadProjet/AwesomePasswordChecker.java
-
+    ```
 ###Utilisation
 - ***Chargement de l'Instance***
 
