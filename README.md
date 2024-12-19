@@ -82,7 +82,6 @@ Générez un hachage MD5 pour un texte donné :
     System.out.println("MD5 Hash : " + hash);
     ```
 
-
 -***Règles de Masque (maskAff)***
 
 # Règles de Mapping des Caractères
