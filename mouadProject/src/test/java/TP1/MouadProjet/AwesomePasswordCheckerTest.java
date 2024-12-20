@@ -77,22 +77,22 @@ public class AwesomePasswordCheckerTest {
         assertEquals(Math.sqrt(15.0), distance, 1e-6, "La distance doit être correcte entre les vecteurs");
     }
 
-    /**
-     * Teste la méthode `ComputeMD5()` pour vérifier le calcul du hachage MD5 d'un mot de passe spécifique.
-     * Ce test vérifie que le calcul du hachage MD5 pour un mot de passe donné est correct.
-     */
-    @Test
-    void testComputeMD5() {
-        String hash = AwesomePasswordChecker.ComputeMD5("abbaoui");
-        
-        // Vérifie que le hachage MD5 n'est pas nul
-        assertNotNull(hash, "Le hachage ne doit pas être nul");
-        
-        // Vérifie que le hachage MD5 a une longueur de 32 caractères
-        assertEquals(32, hash.length(), "Le hachage MD5 doit avoir une longueur de 32 caractères");
-        
-        // Vérifie que le hachage MD5 est correct pour le mot de passe "abbaoui"
-        assertEquals("2c2489f26e8d8020999b031a3dbb3713", hash, "Hachage MD5 incorrect pour 'abbaoui'");
-    }
+   /**
+ * Teste la méthode ComputeMD5 pour différents cas de chaînes de caractères.
+ */
+@Test
+public void testComputeMD5() {
+    // Cas de test avec une chaîne vide
+    assertEquals("d41d8cd98f00b204e9800998ecf8427e", AwesomePasswordChecker.ComputeMD5(""));
+
+    // Cas de test avec une chaîne de caractères
+    assertEquals("5d41402abc4b2a76b9719d911017c592", AwesomePasswordChecker.ComputeMD5("hello"));
+
+    // Cas de test avec une chaîne de caractères plus longue
+    assertEquals("9e107d9d372bb6826bd81d3542a419d6", AwesomePasswordChecker.ComputeMD5("The quick brown fox jumps over the lazy dog"));
+
+    // Cas de test avec une chaîne de caractères contenant des caractères spéciaux
+    assertEquals("7723e4154231f6d9f5c8854cd5cc5032", AwesomePasswordChecker.ComputeMD5("MD5#Test@2024"));
+}
 }
 
