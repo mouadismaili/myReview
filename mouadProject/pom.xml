@@ -4,7 +4,7 @@
   <groupId>TP1.MouadProjet</groupId>
   <artifactId>mouadProject</artifactId>
   <packaging>jar</packaging>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0.0-SNAPSHOT</version>
   <name>mouadProject</name>
   <url>http://maven.apache.org</url>
   
@@ -22,8 +22,7 @@
         <version>5.7.2</version>
         <scope>test</scope>
     </dependency>
-    
-    <!-- Si vous utilisez JUnit 4, vous pouvez également l'inclure -->
+    <!-- JUnit 4 dependency -->
     <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
@@ -66,54 +65,66 @@
 
       <!-- Plugin de tests unitaires (JUnit) -->
       <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-surefire-plugin</artifactId>
-            <version>2.22.2</version>
-            <configuration>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>2.22.2</version>
+          <configuration>
               <includes>
-                <include>**/*Test.java</include>
+                  <include>**/*Test.java</include>
               </includes>
-            </configuration>
-        </plugin>
-        
+          </configuration>
+      </plugin>
+      
       <!-- Plugin Jacoco pour la couverture de code -->
       <plugin>
-        <groupId>org.jacoco</groupId>
-        <artifactId>jacoco-maven-plugin</artifactId>
-        <version>0.8.10</version> <!-- Dernière version stable -->
-        <executions>
-            <execution>
-                <goals>
-                    <goal>prepare-agent</goal>
-                </goals>
-            </execution>
-            <execution>
-                <id>report</id>
-                <phase>verify</phase>
-                <goals>
-                    <goal>report</goal>
-                </goals>
-            </execution>
-        </executions>
+          <groupId>org.jacoco</groupId>
+          <artifactId>jacoco-maven-plugin</artifactId>
+          <version>0.8.10</version>
+          <executions>
+              <execution>
+                  <goals>
+                      <goal>prepare-agent</goal>
+                  </goals>
+              </execution>
+              <execution>
+                  <id>report</id>
+                  <phase>verify</phase>
+                  <goals>
+                      <goal>report</goal>
+                  </goals>
+              </execution>
+          </executions>
       </plugin>
 
       <!-- Plugin pour gérer les ressources -->
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-resources-plugin</artifactId>
-        <version>3.2.0</version>
-        <executions>
-          <execution>
-            <goals>
-              <goal>resources</goal>      <!-- Copie des ressources principales -->
-              <goal>testResources</goal>  <!-- Copie des ressources de test -->
-            </goals>
-          </execution>
-        </executions>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>3.2.0</version>
+          <executions>
+              <execution>
+                  <goals>
+                      <goal>resources</goal>      <!-- Copie des ressources principales -->
+                      <goal>testResources</goal>  <!-- Copie des ressources de test -->
+                  </goals>
+              </execution>
+          </executions>
       </plugin>
-      
-      
-
     </plugins>
   </build>
+
+  <repositories>
+      <repository>
+          <id>github</id>
+          <name>GitHub Packages</name>
+          <url>https://maven.pkg.github.com/mouadismaili/myReview</url>
+      </repository>
+  </repositories>
+
+  <distributionManagement>
+      <repository>
+          <id>github</id>
+          <url>https://maven.pkg.github.com/mouadismaili/myReview</url>
+      </repository>
+  </distributionManagement>
 </project>
